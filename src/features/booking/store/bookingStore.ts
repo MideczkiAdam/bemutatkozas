@@ -17,6 +17,11 @@ interface BookingStore {
   cancelBooking: (bookingId: string) => void;
   getBookingById: (bookingId: string) => Booking | undefined;
 }
+function generateBookingId(): string {
+    return `booking-${Date.now()}-${Math.random()
+    .toString(36)
+    .slice(2, 11)}`;
+}
 
 export const useBookingStore = create<BookingStore>()(
   persist(
@@ -26,7 +31,7 @@ export const useBookingStore = create<BookingStore>()(
       addBooking: (bookingData) => {
         const newBooking: Booking = {
           ...bookingData,
-          id: crypto.randomUUID(),
+          id: generateBookingId(),
           createdAt: toLocalDateTimeString(new Date()),
         };
 
