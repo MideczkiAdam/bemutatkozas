@@ -1,3 +1,4 @@
+import type { BookingError } from "../bookingErrors";
 import type {
   Booking,
   CustomerDetails,
@@ -28,20 +29,6 @@ interface CreateBookingParams {
 
   now?: Date;
 }
-
-type BookingError =
-  | "HAIRDRESSER_NOT_FOUND"
-  | "HAIRDRESSER_INACTIVE"
-  | "SERVICE_NOT_FOUND"
-  | "SERVICE_INACTIVE"
-  | "SERVICE_NOT_AVAILABLE"
-  | "INVALID_DATE"
-  | "INVALID_TIME"
-  | "PAST_DATE"
-  | "HAIRDRESSER_CLOSED"
-  | "OUTSIDE_WORKING_HOURS"
-  | "BOOKING_CONFLICT"
-  | "INVALID_CUSTOMER";
 
 type CreateBookingResult =
   | {

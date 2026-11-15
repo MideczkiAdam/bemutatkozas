@@ -1,0 +1,20 @@
+.section { padding: 100px 0; background: var(--ink); color: var(--white); }
+.container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+.contactGrid { display: grid; grid-template-columns: 1fr 1fr; gap: 100px; }
+.sectionLabel { color: #aab6ad; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.sectionLabel span { color: var(--lime); margin-right: 20px; }
+.contactCopy h2 { margin: 55px 0 25px; font-size: clamp(2.1rem, 4vw, 3.6rem); letter-spacing: -0.055em; }
+.contactCopy h2 em { color: var(--lime); font-style: normal; }
+.contactCopy > p { max-width: 330px; color: #aab6ad; }
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 10px; margin-top: 20px; border-radius: 999px; padding: 14px 22px; background: var(--lime); color: var(--ink); font: 600 0.9rem var(--body); }
+.contactDetails { display: flex; flex-direction: column; justify-content: center; gap: 45px; }
+.contactDetails > div { display: flex; flex-direction: column; gap: 9px; }
+.contactDetails span { color: var(--lime); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em; }
+.contactDetails strong { font-family: var(--display); font-size: 1.3rem; }
+.contactDetails p { margin: 0; color: #aab6ad; }
+@media (max-width: 767px) {
+  .container { width: min(100% - 32px, 560px); }
+  .section { padding: 72px 0; }
+  .contactGrid { grid-template-columns: 1fr; gap: 35px; }
+  .contactCopy h2 { margin-top: 35px; }
+}

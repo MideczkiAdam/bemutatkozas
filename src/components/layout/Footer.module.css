@@ -1,0 +1,8 @@
+.footer { background: var(--ink); color: #7f8d84; }
+.container { width: min(1120px, calc(100% - 40px)); display: flex; justify-content: space-between; align-items: center; gap: 18px; margin-inline: auto; border-top: 1px solid #34423a; padding: 22px 0; font-size: 0.75rem; }
+.brand { display: flex; align-items: center; gap: 10px; color: var(--white); font-family: var(--display); font-weight: 700; }
+.brandMark { display: grid; width: 31px; height: 31px; place-items: center; border-radius: 50%; background: var(--white); color: var(--ink); font-size: 0.9rem; }
+.container a:hover { color: var(--lime); }
+@media (max-width: 767px) {
+  .container { width: min(100% - 32px, 560px); align-items: flex-start; flex-direction: column; gap: 8px; }
+}

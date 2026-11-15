@@ -1,0 +1,230 @@
+.hero {
+  min-height: calc(100vh - 76px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 70px 0 25px;
+  overflow: hidden;
+}
+
+.container {
+  width: min(1120px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.heroContent {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 30px;
+}
+
+.eyebrow {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.eyebrow span {
+  color: #9ab84e;
+  margin-left: 8px;
+}
+
+.heroCopy h1 {
+  max-width: 700px;
+  margin: 20px 0 28px;
+  font-size: clamp(3.2rem, 7vw, 6.7rem);
+  letter-spacing: -0.07em;
+}
+
+.heroCopy h1,
+.heroCopy h1 em {
+  font-family: var(--display);
+  line-height: 1.05;
+}
+
+.heroCopy h1 em {
+  color: #70885d;
+  font-style: normal;
+}
+
+.heroIntro {
+  max-width: 430px;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  margin-top: 36px;
+}
+
+.buttonPrimary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 22px;
+  background: var(--ink);
+  color: var(--lime);
+  cursor: pointer;
+  font: 600 0.9rem var(--body);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.buttonPrimary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 22px rgba(23, 35, 31, 0.16);
+}
+
+.textLink {
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: 3px;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.heroVisual {
+  position: relative;
+  min-height: 420px;
+}
+
+.heroMonogram {
+  position: absolute;
+  inset: 30px 0 0;
+  color: var(--ink);
+  font: 700 clamp(15rem, 35vw, 29rem) / 0.8 var(--display);
+  letter-spacing: -0.15em;
+  text-align: center;
+}
+
+.heroMonogram span {
+  color: #9ab84e;
+}
+
+.orbit {
+  position: absolute;
+  border: 1px solid #cfd7cb;
+  border-radius: 50%;
+}
+
+.orbitOne {
+  width: 390px;
+  height: 210px;
+  top: 116px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-24deg);
+}
+
+.orbitTwo {
+  width: 210px;
+  height: 390px;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%) rotate(28deg);
+}
+
+.heroCard {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  border-radius: 8px;
+  padding: 11px 15px;
+  background: var(--white);
+  box-shadow: var(--shadow);
+  font-size: 0.75rem;
+}
+
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #9acb38;
+}
+
+.floatingShape {
+  position: absolute;
+  z-index: 2;
+  background: var(--lime);
+}
+
+.shapeSquare {
+  left: 10%;
+  bottom: 60px;
+  width: 25px;
+  height: 25px;
+  transform: rotate(45deg);
+}
+
+.shapeDot {
+  right: 7%;
+  bottom: 30px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.heroFooter {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 55px;
+  color: var(--muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.scrollHint {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.scrollLine {
+  width: 45px;
+  height: 1px;
+  background: var(--muted);
+}
+
+.fadeIn {
+  animation: fade-in 0.8s both;
+}
+
+.heroCopy .fadeIn:nth-child(2) { animation-delay: 0.12s; }
+.heroCopy .fadeIn:nth-child(3) { animation-delay: 0.24s; }
+.heroCopy .fadeIn:nth-child(4) { animation-delay: 0.36s; }
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(18px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 1024px) {
+  .heroCopy h1 { font-size: clamp(3.2rem, 8vw, 5.5rem); }
+  .heroVisual { min-height: 360px; }
+  .heroMonogram { font-size: 20rem; }
+  .orbitOne { width: 320px; }
+  .orbitTwo { width: 180px; height: 320px; }
+}
+
+@media (max-width: 767px) {
+  .container { width: min(100% - 32px, 560px); }
+  .hero { min-height: auto; padding-top: 65px; }
+  .heroContent { grid-template-columns: 1fr; }
+  .heroCopy h1 { font-size: clamp(3.25rem, 17vw, 5rem); }
+  .heroIntro { font-size: 1rem; }
+  .heroVisual { min-height: 275px; margin-top: 35px; }
+  .heroMonogram { font-size: 15rem; }
+  .orbitOne { width: 270px; height: 150px; top: 70px; }
+  .orbitTwo { width: 150px; height: 270px; top: 10px; }
+  .heroCard { top: 0; font-size: 0.65rem; }
+  .heroFooter { margin-top: 35px; }
+  .scrollHint { display: none; }
+}

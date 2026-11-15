@@ -1,53 +1,61 @@
-import type { Booking } from '../bookingType';
-import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
 
-interface BookingStore{
-    bookings: Booking[];
-    addBooking: (booking: Omit<Booking, 'id' | 'createdAt'>) => void;
-    cancelBooking: (bookingId: string) => void;
-    getBookingById: (bookingId: string) => Booking | undefined;
+import { create } from "zustand";
+import {
+  persist,
+  createJSONStorage,
+} from "zustand/middleware";
+
+import type { Booking } from "../bookingType";
+import { toLocalDateTimeString } from "../utils/dateUtils";
+
+type NewBooking = Omit<Booking, "id" | "createdAt">;
+
+interface BookingStore {
+  bookings: Booking[];
+
+  addBooking: (booking: NewBooking) => Booking;
+  cancelBooking: (bookingId: string) => void;
+  getBookingById: (bookingId: string) => Booking | undefined;
 }
 
 export const useBookingStore = create<BookingStore>()(
-    persist(
-        (set, get) => ({
-            bookings: [],
+  persist(
+    (set, get) => ({
+      bookings: [],
 
-            addBooking: (booking) => {
-                const newBooking: Booking = {
-                    ...booking,
-                    id: crypto.randomUUID(),
-                    createdAt: new Date().toISOString(),
-                };
-                set((state) => ({
-                    bookings: [...state.bookings, newBooking],
-                }));
-            },
+      addBooking: (bookingData) => {
+        const newBooking: Booking = {
+          ...bookingData,
+          id: crypto.randomUUID(),
+          createdAt: toLocalDateTimeString(new Date()),
+        };
 
-            cancelBooking: (bookingId) => {
-                set((state) => ({
-                    bookings: state.bookings.map((booking) =>
-                        booking.id === bookingId &&
-                        booking.status === "confirmed" ?
-                            { ...booking, status: "cancelled" } : booking
-                    )
-                }));
-            },
+        set((state) => ({
+          bookings: [...state.bookings, newBooking],
+        }));
 
-            getBookingById: (bookingId) => {
-                return get().bookings.find(
-                    (booking) => booking.id === bookingId
-                );
-            },
-        }),
-        {
-            name: "bookings",
-            storage: createJSONStorage(() => localStorage),
+        return newBooking;
+      },
 
-            partialize: (state) => ({
-                bookings: state.bookings,
-            }),
-        }
-    )
-)
+      cancelBooking: (bookingId) => {
+        set((state) => ({
+          bookings: state.bookings.map((booking) =>
+            booking.id === bookingId
+              ? { ...booking, status: "cancelled" }
+              : booking
+          ),
+        }));
+      },
+
+      getBookingById: (bookingId) => {
+        return get().bookings.find(
+          (booking) => booking.id === bookingId
+        );
+      },
+    }),
+    {
+      name: "hair-salon-bookings",
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);

@@ -1,0 +1,53 @@
+.section { padding: 100px 0; background: var(--cream); }
+.container { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+.sectionHeading { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 50px; }
+.sectionHeading > p { color: var(--muted); text-align: right; }
+.sectionLabel { color: var(--muted); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+.sectionLabel span { color: var(--ink); margin-right: 20px; }
+.sectionHeading h2 { font-size: clamp(2.1rem, 4vw, 3.6rem); letter-spacing: -0.055em; }
+.sectionHeading h2 em { color: #70885d; font-style: normal; }
+.bookingLayout { display: grid; grid-template-columns: 1.2fr 0.8fr; align-items: start; gap: 25px; }
+.bookingForm, .bookingSummary { border: 1px solid var(--line); border-radius: 14px; padding: 30px; background: var(--white); }
+.bookingForm { display: flex; flex-direction: column; gap: 27px; }
+.bookingStep { display: grid; grid-template-columns: 36px 1fr; gap: 15px; }
+.stepNumber { display: grid; width: 32px; height: 32px; place-items: center; border-radius: 50%; background: var(--cream); color: var(--muted); font-size: 0.75rem; font-weight: 700; }
+.stepContent { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.stepContent label { font-weight: 700; font-size: 0.9rem; }
+.stepContent select, .stepContent input { width: 100%; min-height: 46px; border: 1px solid var(--line); border-radius: 7px; padding: 10px 12px; background: var(--cream); color: var(--ink); outline: none; }
+.stepContent select:focus, .stepContent input:focus { border-color: #70885d; }
+.fieldHint { margin: -2px 0 0; color: var(--muted); font-size: 0.78rem; }
+.timeSlots { margin-top: 10px; }
+.timeSlotsTitle { margin-bottom: 12px; font-size: 0.85rem; font-weight: 700; }
+.emptySlots { color: var(--muted); font-size: 0.85rem; }
+.timeGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 8px; }
+.timeSlot { min-height: 39px; border: 1px solid var(--line); border-radius: 7px; background: var(--white); color: var(--ink); cursor: pointer; font-size: 0.82rem; }
+.timeSlot:hover:not(:disabled), .selected { border-color: var(--ink); background: var(--ink); color: var(--lime); }
+.timeSlot:disabled { opacity: 0.35; cursor: not-allowed; text-decoration: line-through; }
+.formFields { display: grid; gap: 10px; }
+.bookingMessage { border-radius: 7px; padding: 12px 14px; font-size: 0.85rem; }
+.success { background: #edf5e5; color: #38552b; }
+.error { background: #faeeee; color: #8c3434; }
+.submitButton { display: inline-flex; justify-content: center; align-items: center; gap: 10px; border: 0; border-radius: 999px; padding: 15px 22px; background: var(--ink); color: var(--lime); cursor: pointer; font: 600 0.9rem var(--body); }
+.submitButton:disabled { opacity: 0.45; cursor: not-allowed; }
+.privacyNote { margin: -12px 0 0; color: var(--muted); font-size: 0.75rem; text-align: center; }
+.bookingSummary { position: sticky; top: 100px; }
+.summaryLabel { color: var(--muted); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; }
+.bookingSummary h3 { margin: 18px 0 24px; font-size: 1.7rem; }
+.summaryDivider { height: 1px; margin: 20px 0; background: var(--line); }
+.summaryRow { display: flex; justify-content: space-between; gap: 16px; margin: 15px 0; font-size: 0.82rem; }
+.summaryRow span { color: var(--muted); }
+.summaryRow strong { text-align: right; }
+.summaryTotal { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+.summaryTotal span { color: var(--muted); font-size: 0.82rem; }
+.summaryTotal strong { font: 600 1.5rem var(--display); }
+.summaryFootnote { margin: 22px 0 0; color: var(--muted); font-size: 0.75rem; line-height: 1.5; }
+@media (max-width: 767px) {
+  .container { width: min(100% - 32px, 560px); }
+  .section { padding: 72px 0; }
+  .sectionHeading { display: block; margin-bottom: 30px; }
+  .sectionHeading > p { margin-top: 22px; text-align: left; }
+  .bookingLayout { grid-template-columns: 1fr; }
+  .bookingForm, .bookingSummary { padding: 22px; }
+  .bookingSummary { position: static; }
+  .timeGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
