@@ -17,8 +17,9 @@ jobs:
       - run: npm run build
       - uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: madam.f-hub.hu
+          server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftp
           local-dir: dist/
           server-dir: /
