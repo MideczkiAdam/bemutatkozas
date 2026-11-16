@@ -1,3 +1,4 @@
+import ServiceIcon from "../components/ServiceIcon";
 import type { Service } from "../types/service";
 import { formatPrice } from "../utils/formatters";
 import styles from "./ServicesSection.module.css";
@@ -26,7 +27,7 @@ export default function ServicesSection({
           {services.map((service, index) => (
             <article className={styles.serviceCard} key={service.id}>
               <div className={styles.serviceCardTop}>
-                <span className={styles.serviceNumber}>0{index + 1}</span>
+                <span className={styles.serviceNumber}><ServiceIcon name={service.serviceIcon} size={28}/></span>
                 <span className={styles.serviceArrow}>↗</span>
               </div>
               <div>
@@ -40,9 +41,8 @@ export default function ServicesSection({
               <a
                 className={styles.serviceSelect}
                 href="#booking"
-                onClick={() => onChooseService(service.id)}
               >
-                Ezt választom <span>→</span>
+                Időpontot foglalok <span>→</span>
               </a>
             </article>
           ))}

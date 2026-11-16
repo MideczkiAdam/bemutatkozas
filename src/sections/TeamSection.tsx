@@ -26,7 +26,7 @@ export default function TeamSection({
             <article className={styles.teamCard} key={hairdresser.id}>
               <div className={styles.teamAvatar}>
                 {hairdresser.image ? (
-                  <img src={hairdresser.image} alt={hairdresser.name} />
+                  <img src={hairdresser.image} alt={hairdresser.name} loading="lazy" />
                 ) : (
                   <span>{hairdresser.name.charAt(0)}</span>
                 )}
