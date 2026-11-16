@@ -10,7 +10,6 @@ interface ServicesSectionProps {
 
 export default function ServicesSection({
   services,
-  onChooseService,
 }: ServicesSectionProps) {
   return (
     <section className={styles.section} id="services">
@@ -24,7 +23,7 @@ export default function ServicesSection({
         </div>
 
         <div className={styles.servicesGrid}>
-          {services.map((service, index) => (
+          {services.map((service) => (
             <article className={styles.serviceCard} key={service.id}>
               <div className={styles.serviceCardTop}>
                 <span className={styles.serviceNumber}><ServiceIcon name={service.serviceIcon} size={28}/></span>
