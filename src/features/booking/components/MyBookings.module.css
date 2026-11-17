@@ -12,11 +12,24 @@
 .textLink span { margin-left: 7px; color: var(--lime); }
 .bookingList { display: grid; gap: 12px; }
 .bookingListCard { display: grid; grid-template-columns: 160px 1fr auto; align-items: center; gap: 25px; border: 1px solid var(--line); padding: 20px 24px; background: var(--cream); }
+.cancelled{ background: #eeeeee; color: #888; opacity: 0.8; }
 .bookingListDate { display: flex; flex-direction: column; gap: 5px; }
 .bookingListDate strong { font: 400 1.65rem var(--display); }
 .bookingListDate span, .bookingListDetails p { color: var(--muted); font-size: .82rem; }
 .bookingListDetails h3 { margin: 0 0 6px; font-size: 1.25rem; }
 .bookingListDetails p { margin: 3px 0; }
+.bookingListActions { display: flex; flex-direction: column; gap: 12px;}
+.cancelledLabel {
+  padding: 10px 16px;
+  font-size: 0.72rem;
+  color: #777;
+  border: 1px solid #ccc;
+  white-space: nowrap;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
 .cancelButton { border: 1px solid var(--line); padding: 10px 16px; background: transparent; color: var(--muted); cursor: pointer; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
 .cancelButton:hover { border-color: #a44; color: #a44; }
+.deleteButton { border: 1px solid var(--line); padding: 10px 16px; background: transparent; color: rgb(150, 0, 0); cursor: pointer; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
+.deleteButton:hover { border-color: #a44; color: #a44; }
 @media(max-width:767px) { .container { width: calc(100% - 36px); } .section { padding: 70px 0; } .sectionHeading { display: block; margin-bottom: 28px; } .sectionHeading > p { margin-top: 18px; text-align: left; } .bookingListCard { grid-template-columns: 1fr auto; gap: 12px; } .bookingListDetails { grid-column: 1 / -1; grid-row: 2; } .cancelButton { grid-column: 2; grid-row: 1; } }

@@ -16,6 +16,7 @@ function App() {
   const form = useBookingForm();
   const bookings = useBookingStore((s) => s.bookings);
   const cancelBooking = useBookingStore((s) => s.cancelBooking);
+  const deleteBooking = useBookingStore((s) => s.deleteBooking);
 
   return (
     <>
@@ -33,7 +34,8 @@ function App() {
           bookings={bookings}
           hairdressers={hairdressers}
           services={services}
-          onCancelBooking={cancelBooking}
+          cancelBooking={cancelBooking}
+          deleteBooking={deleteBooking}
         />
         <ContactSection />
       </main>

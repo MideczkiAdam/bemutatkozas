@@ -8,14 +8,16 @@ interface MyBookingsProps {
   bookings: Booking[];
   services: Service[];
   hairdressers: HairdresserType[];
-  onCancelBooking: (bookingId: string) => void;
+  cancelBooking: (bookingId: string) => void;
+  deleteBooking: (bookingId: string) => void;
 }
 
 export default function MyBookings({
   bookings,
   services,
   hairdressers,
-  onCancelBooking,
+  cancelBooking,
+  deleteBooking
 }: MyBookingsProps) {
   const handleCancel = (bookingId: string) => {
     const confirmed = window.confirm(
@@ -23,7 +25,17 @@ export default function MyBookings({
     );
 
     if (confirmed) {
-      onCancelBooking(bookingId);
+      cancelBooking(bookingId);
+    }
+  };
+
+  const handleDelete = (bookingId: string) => {
+    const confirmed = window.confirm(
+      "Biztosan törölni szeretnéd ezt a foglalást?"
+    );
+
+    if (confirmed) {
+      deleteBooking(bookingId);
     }
   };
 
@@ -48,9 +60,11 @@ export default function MyBookings({
             {bookings.map((booking) => {
               const service = services.find((item) => item.id === booking.serviceId);
               const hairdresser = hairdressers.find((item) => item.id === booking.hairdresserId);
+              const isCancelled = booking.status === "cancelled";
+              console.log("Booking status:", booking.status, "isCancelled:", isCancelled);
 
               return (
-                <article className={styles.bookingListCard} key={booking.id}>
+                <article className={`${styles.bookingListCard} ${isCancelled ? styles.cancelled : ""}`} key={booking.id}>
                   <div className={styles.bookingListDate}>
                     <strong>{formatTime(booking.startAt)}</strong>
                     <span>{formatDate(booking.startAt)}</span>
@@ -60,9 +74,18 @@ export default function MyBookings({
                     <p>{hairdresser?.name ?? "Fodrász"} · {service ? formatPrice(service.price) : ""}</p>
                     <p>{booking.customer.name}</p>
                   </div>
-                  <button className={styles.cancelButton} type="button" onClick={() => handleCancel(booking.id)}>
-                    Lemondás
-                  </button>
+                  <div className={styles.bookingListActions}>
+                    {isCancelled ? (
+                      <span className={styles.cancelledLabel}>Lemondva</span>
+                    ) : (
+                      <button className={styles.cancelButton} type="button" onClick={() => handleCancel(booking.id)}>
+                        Lemondás
+                      </button>
+                    )}
+                    <button className={styles.deleteButton} type="button" onClick={() => handleDelete(booking.id)}>
+                      Törlés
+                    </button>
+                  </div>
                 </article>
               );
             })}

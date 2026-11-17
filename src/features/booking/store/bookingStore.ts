@@ -15,6 +15,7 @@ interface BookingStore {
 
   addBooking: (booking: NewBooking) => Booking;
   cancelBooking: (bookingId: string) => void;
+  deleteBooking: (bookingId: string) => void;
   getBookingById: (bookingId: string) => Booking | undefined;
 }
 function generateBookingId(): string {
@@ -49,6 +50,12 @@ export const useBookingStore = create<BookingStore>()(
               ? { ...booking, status: "cancelled" }
               : booking
           ),
+        }));
+      },
+
+      deleteBooking: (bookingId) => {
+        set ((state) => ({
+          bookings: state.bookings.filter((booking) => booking.id !== bookingId),
         }));
       },
 
