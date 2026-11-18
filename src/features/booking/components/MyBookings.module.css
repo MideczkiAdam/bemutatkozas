@@ -18,7 +18,7 @@
 .bookingListDate span, .bookingListDetails p { color: var(--muted); font-size: .82rem; }
 .bookingListDetails h3 { margin: 0 0 6px; font-size: 1.25rem; }
 .bookingListDetails p { margin: 3px 0; }
-.bookingListActions { display: flex; flex-direction: column; gap: 12px;}
+.bookingListActions { display: flex; flex-direction: column; gap: 12px; min-width: 130px; }
 .cancelledLabel {
   padding: 10px 16px;
   font-size: 0.72rem;
@@ -27,9 +27,42 @@
   white-space: nowrap;
   letter-spacing: .06em;
   text-transform: uppercase;
+  text-align: center;
 }
-.cancelButton { border: 1px solid var(--line); padding: 10px 16px; background: transparent; color: var(--muted); cursor: pointer; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
-.cancelButton:hover { border-color: #a44; color: #a44; }
-.deleteButton { border: 1px solid var(--line); padding: 10px 16px; background: transparent; color: rgb(150, 0, 0); cursor: pointer; font-size: .72rem; letter-spacing: .06em; text-transform: uppercase; }
+.cancelButton,
+.deleteButton {
+  border: 1px solid var(--line);
+  padding: 10px 16px;
+  background: transparent;
+  cursor: pointer;
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  text-align: center;
+  white-space: nowrap;
+}
+.cancelButton { color: var(--muted); }
+.deleteButton { color: rgb(150, 0, 0); }
+.cancelButton:hover,
 .deleteButton:hover { border-color: #a44; color: #a44; }
-@media(max-width:767px) { .container { width: calc(100% - 36px); } .section { padding: 70px 0; } .sectionHeading { display: block; margin-bottom: 28px; } .sectionHeading > p { margin-top: 18px; text-align: left; } .bookingListCard { grid-template-columns: 1fr auto; gap: 12px; } .bookingListDetails { grid-column: 1 / -1; grid-row: 2; } .cancelButton { grid-column: 2; grid-row: 1; } }
+
+@media (max-width: 767px) {
+  .container { width: calc(100% - 36px); }
+  .section { padding: 70px 0; }
+  .sectionHeading { display: block; margin-bottom: 28px; }
+  .sectionHeading > p { margin-top: 18px; text-align: left; }
+
+  /* kártya: dátum, részletek, majd a gombok egymás alatt */
+  .bookingListCard { grid-template-columns: 1fr; gap: 14px; padding: 18px; }
+  .bookingListDate { flex-direction: row; align-items: baseline; gap: 12px; }
+  .bookingListDetails { grid-column: auto; grid-row: auto; }
+
+  /* gombok: egy sorban, egyenlő szélesen, nagy érintési felülettel */
+  .bookingListActions { flex-direction: row; min-width: 0; }
+  .bookingListActions > * { flex: 1; min-height: 44px; }
+  .cancelledLabel { display: flex; align-items: center; justify-content: center; }
+}
+
+@media (max-width: 380px) {
+  .bookingListActions { flex-direction: column; }
+}

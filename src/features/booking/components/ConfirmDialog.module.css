@@ -1,0 +1,44 @@
+.dialog {
+  margin: auto;
+  border: 1px solid var(--line);
+  padding: 0;
+  width: min(440px, calc(100% - 36px));
+  background: var(--white);
+  color: var(--ink);
+  box-shadow: var(--shadow);
+}
+.dialog::backdrop {
+  background: rgba(41, 34, 31, .45);
+  backdrop-filter: blur(3px);
+}
+.dialog[open] { animation: pop .18s ease-out; }
+.dialog[open]::backdrop { animation: fade .18s ease-out; }
+.content { padding: 34px 32px 28px; }
+.content h3 { margin: 0 0 12px; font-size: 1.7rem; }
+.content p { margin: 0 0 28px; color: var(--muted); line-height: 1.6; }
+.actions { display: flex; justify-content: flex-end; gap: 12px; }
+.cancel,
+.confirm {
+  border: 1px solid var(--line);
+  padding: 11px 20px;
+  background: transparent;
+  cursor: pointer;
+  font-size: .72rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  transition: background .15s, color .15s, border-color .15s;
+}
+.cancel { color: var(--muted); }
+.cancel:hover { border-color: var(--ink); color: var(--ink); }
+.confirm { border-color: var(--ink); background: var(--ink); color: var(--white); }
+.confirm:hover { background: var(--lime); border-color: var(--lime); }
+.danger { border-color: #962020; background: #962020; }
+.danger:hover { background: #7a1818; border-color: #7a1818; }
+
+@keyframes pop { from { opacity: 0; transform: translateY(10px) scale(.97); } to { opacity: 1; transform: none; } }
+@keyframes fade { from { opacity: 0; } to { opacity: 1; } }
+
+@media (max-width: 480px) {
+  .actions { flex-direction: column-reverse; }
+  .actions button { width: 100%; }
+}

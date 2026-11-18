@@ -72,6 +72,25 @@ export function useBookingForm() {
     clearFeedback();
   };
 
+  const chooseService = (id: string) => {
+    const serviceExists = services.some((s) => s.id === id && s.isActive);
+    if (!serviceExists) return;
+
+    const offersService = (h: (typeof hairdressers)[number]) =>
+      h.isActive && h.serviceIds.includes(id);
+
+    const target =
+      hairdresser && offersService(hairdresser)
+        ? hairdresser
+        : hairdressers.find(offersService);
+    if (!target) return;
+
+    if (target.id !== hairdresserId) setHairdresserId(target.id);
+    setServiceId(id);
+    setTime("");
+    clearFeedback();
+  };
+
   const selectDate = (value: string) => {
     setDate(value);
     setTime("");
@@ -129,7 +148,7 @@ export function useBookingForm() {
     hairdresserId, serviceId, date, time, customer, message, isSuccess,
     unlocked,
     // műveletek
-    selectHairdresser, selectService, selectDate, selectTime,
+    selectHairdresser, selectService, chooseService, selectDate, selectTime,
     changeCustomer, submit,
   };
 }

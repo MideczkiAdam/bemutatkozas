@@ -24,7 +24,10 @@ function App() {
       <main>
         <HeroSection />
         <AboutSection />
-        <ServicesSection services={services} onChooseService={form.selectService} />
+        <ServicesSection 
+          services={services}
+          onChooseService={form.chooseService} 
+        />
         <TeamSection
           hairdressers={hairdressers}
           onChooseHairdresser={form.selectHairdresser}

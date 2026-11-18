@@ -10,6 +10,7 @@ interface ServicesSectionProps {
 
 export default function ServicesSection({
   services,
+  onChooseService
 }: ServicesSectionProps) {
   return (
     <section className={styles.section} id="services">
@@ -40,6 +41,7 @@ export default function ServicesSection({
               <a
                 className={styles.serviceSelect}
                 href="#booking"
+                onClick={() => onChooseService(service.id)}
               >
                 Időpontot foglalok <span>→</span>
               </a>
